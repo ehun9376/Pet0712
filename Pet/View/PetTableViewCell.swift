@@ -36,17 +36,11 @@ class PetTableViewCellRowModel: CellRowModel {
 class PetTableViewCell: UITableViewCell {
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+  
 }
 
 extension PetTableViewCell: CellViewBase {
@@ -54,14 +48,12 @@ extension PetTableViewCell: CellViewBase {
         guard let rowModel = rowModel as? PetTableViewCellRowModel else { return }
         self.myLabel.text = rowModel.labelTitle
         if let urlStr = rowModel.imageURLStr  {
-            DispatchQueue.main.async {
-                self.myImageView.sd_setImage(with: URL(string: urlStr),
-                                             placeholderImage:UIImage(named:"LoadingImage"),
-                                             options:[.allowInvalidSSLCertificates],
-                                             completed:{(image, error, cacheTRype, url)in
-                    print(error?.localizedDescription ?? "")
-                })
-            }
+            self.myImageView.sd_setImage(with: URL(string: urlStr),
+                                         placeholderImage:UIImage(named:"LoadingImage"),
+                                         options:[.allowInvalidSSLCertificates],
+                                         completed:{(image, error, cacheTRype, url)in
+                print(error?.localizedDescription ?? "")
+            })
         }
 
     }
