@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "PetTableViewController.setupRow():PetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pet.albumFile">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in PetTableViewCell.setupCellView(rowModel:):PetTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "rowModel.imageURLStr ?? &quot;&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PetViewController.viewDidLoad():PetViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "idLbl">
+            </PersistentString>
+            <PersistentString
+               value = "kindLbl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
