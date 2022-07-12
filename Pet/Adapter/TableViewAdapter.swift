@@ -37,6 +37,7 @@ extension TableViewAdapter: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.rowModels[indexPath.row].indexPath = indexPath
         let rowModel = self.rowModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: rowModel.cellReUseID(), for: indexPath)
         if let cell = cell as? CellViewBase {

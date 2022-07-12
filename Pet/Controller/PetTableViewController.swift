@@ -33,7 +33,7 @@ class PetTableViewController: UIViewController {
             }
         }
         if let results = UserDefaults.standard.object(forKey: "pet") as? Data {
-            guard let petModels = PetModel.deCodeData(unarchivedObject: results) else { return  }
+            guard let petModels =  ModelManager.deCodeData(type: PetModel.self, unarchivedObject: results) else { return  }
             print(petModels)
         }
 
@@ -53,8 +53,8 @@ class PetTableViewController: UIViewController {
                                                       cellAction: { rowModel in
                 guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
                 self.gotoPetDetailVC(petModel: rowModel.petModel)
-                if let petModel = rowModel.petModel, let data = PetModel.encodeData(widgetDataArray: [petModel]){
-                    UserDefaults.standard.set(data, forKey: "pet")
+                if let petModel = rowModel.petModel,let petData = ModelManager.encodeData(dataArray: [petModel]){
+                    UserDefaults.standard.set(petData, forKey: "pet")
                 }
             }))
         }

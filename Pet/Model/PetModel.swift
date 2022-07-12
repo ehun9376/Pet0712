@@ -7,6 +7,39 @@
 
 import Foundation
 class PetModel: NSObject, Codable ,NSCoding{
+    override func isEqual(_ object: Any?) -> Bool {
+        guard let object = object as? PetModel else {
+            return false
+        }
+        return self.albumFile == object.albumFile &&
+        self.albumUpdate == object.albumUpdate &&
+        self.animalVariety == object.animalVariety &&
+        self.animalAge == object.animalAge &&
+        self.animalAreaPkid == object.animalAreaPkid &&
+        self.animalBacterin == object.animalBacterin &&
+        self.animalBodytype == object.animalBodytype &&
+        self.animalCaption == object.animalCaption &&
+        self.animalCloseddate == object.animalCloseddate &&
+        self.animalColour == object.animalColour &&
+        self.animalCreatetime == object.animalCreatetime &&
+        self.animalFoundplace == object.animalFoundplace &&
+        self.animalId == object.animalId &&
+        self.animalKind == object.animalKind &&
+        self.animalOpendate == object.animalOpendate &&
+        self.animalPlace == object.animalPlace &&
+        self.animalRemark == object.animalRemark &&
+        self.animalSex == object.animalSex &&
+        self.animalShelterPkid == object.animalShelterPkid &&
+        self.animalStatus == object.animalStatus &&
+        self.animalSterilization == object.animalSterilization &&
+        self.animalSubid == object.animalSubid &&
+        self.animalTitle == object.animalTitle &&
+        self.animalUpdate == object.animalUpdate &&
+        self.cDate == object.cDate &&
+        self.shelterAddress == object.shelterAddress &&
+        self.shelterName == object.shelterName &&
+        self.shelterTel == object.shelterTel
+    }
 
     let albumFile : String
     let albumUpdate : String?
@@ -157,28 +190,28 @@ class PetModel: NSObject, Codable ,NSCoding{
         self.shelterTel = coder.decodeObject(forKey: "shelterTel") as? String ?? ""
 
     }
-    static func encodeData(widgetDataArray : [PetModel]) -> Data? {
-        do {
-            NSKeyedUnarchiver.setClass(PetModel.self, forClassName: "PetModel")
-            let data = try NSKeyedArchiver.archivedData(withRootObject: widgetDataArray as Array, requiringSecureCoding: false)
-            return data
-        } catch {
-            return nil
-        }
-        
-    }
-
-    static func deCodeData(unarchivedObject: Data) -> [PetModel]? {
-        do{
-            NSKeyedUnarchiver.setClass(PetModel.self, forClassName: "PetModel")
-//            let array = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, SearchCode.self], from: unarchivedObject) as? [SearchCode]
-            if let any = ((try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(unarchivedObject)) as Any??), let array = any as? [PetModel]? {
-                return array
-            } else {
-                return []
-            }
-        }
-    }
+//    static func encodeData(widgetDataArray : [PetModel]) -> Data? {
+//        do {
+//            NSKeyedUnarchiver.setClass(PetModel.self, forClassName: "PetModel")
+//            let data = try NSKeyedArchiver.archivedData(withRootObject: widgetDataArray as Array, requiringSecureCoding: false)
+//            return data
+//        } catch {
+//            return nil
+//        }
+//        
+//    }
+//
+//    static func deCodeData(unarchivedObject: Data) -> [PetModel]? {
+//        do{
+//            NSKeyedUnarchiver.setClass(PetModel.self, forClassName: "PetModel")
+////            let array = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, SearchCode.self], from: unarchivedObject) as? [SearchCode]
+//            if let any = ((try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(unarchivedObject)) as Any??), let array = any as? [PetModel]? {
+//                return array
+//            } else {
+//                return []
+//            }
+//        }
+//    }
     
 
 

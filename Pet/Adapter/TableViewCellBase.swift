@@ -22,4 +22,5 @@ class CellRowModel: CellRowModelBase {
         return ""
     }
     var cellDidSelect: ((CellRowModel)->())?
+    var indexPath: IndexPath?
 }
