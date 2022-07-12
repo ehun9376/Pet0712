@@ -15,7 +15,9 @@ class PetTableViewController: UIViewController {
     
     var adapter: TableViewAdapter?
     
-    var petList = [PetModel]()
+    var petList: [PetModel] = []
+    
+    var lovePetList: [PetModel] = []
     
     var petType: PetType = .dog
 
@@ -32,10 +34,12 @@ class PetTableViewController: UIViewController {
                 print(error)
             }
         }
-        if let results = UserDefaults.standard.object(forKey: "pet") as? Data {
-            guard let petModels =  ModelManager.deCodeData(type: PetModel.self, unarchivedObject: results) else { return  }
-            print(petModels)
+        if let petData = UserDefaults.standard.object(forKey: "pet") as? Data {
+            if let loadedPets = try? JSONDecoder().decode([PetModel].self, from: petData) {
+                self.lovePetList  = loadedPets
+            }
         }
+
 
     }
     
@@ -47,14 +51,21 @@ class PetTableViewController: UIViewController {
     func setupRow() {
         var rowModels: [CellRowModel] = []
         for pet in self.petList {
+            if self.lovePetList.contains(pet){
+                print("LOVeeeee")
+            }
             rowModels.append(PetTableViewCellRowModel(lableTitle: pet.animalVariety,
                                                       imageURLStr: pet.albumFile,
                                                       petModel: pet,
                                                       cellAction: { rowModel in
                 guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
                 self.gotoPetDetailVC(petModel: rowModel.petModel)
-                if let petModel = rowModel.petModel,let petData = ModelManager.encodeData(dataArray: [petModel]){
-                    UserDefaults.standard.set(petData, forKey: "pet")
+                if let petModel = rowModel.petModel{
+                    let encoder = JSONEncoder()
+                    if let encoded = try? encoder.encode([petModel]) {
+                        let defaults = UserDefaults.standard
+                        defaults.set(encoded, forKey: "pet")
+                    }
                 }
             }))
         }

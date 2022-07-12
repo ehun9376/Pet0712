@@ -23,7 +23,6 @@
 		36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 36DC8C63287D01D700CFDE06 /* SDWebImage */; };
 		36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */; };
 		36DC8C69287D0A8300CFDE06 /* TableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C68287D0A8300CFDE06 /* TableViewCellBase.swift */; };
-		36DC8C6D287D6A0E00CFDE06 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C6C287D6A0E00CFDE06 /* ModelManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		2ABB11F0287B0E2300580F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
 		36DC8C68287D0A8300CFDE06 /* TableViewCellBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellBase.swift; sourceTree = "<group>"; };
-		36DC8C6C287D6A0E00CFDE06 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		820F70814E127024CCE97A86 /* Pods-Pet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.debug.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.debug.xcconfig"; sourceTree = "<group>"; };
 		DA6A8AF4F31D1DA463B12381 /* Pods-Pet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.release.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.release.xcconfig"; sourceTree = "<group>"; };
 		E85AB6353BB78F89B10422C0 /* Pods_Pet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				2AA26EEA287B86DB003C5045 /* PetModel.swift */,
-				36DC8C6C287D6A0E00CFDE06 /* ModelManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,7 +286,6 @@
 				2AA26EE8287B8694003C5045 /* NetworkSerview.swift in Sources */,
 				2ABB11E3287B0E2300580F5D /* AppDelegate.swift in Sources */,
 				36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */,
-				36DC8C6D287D6A0E00CFDE06 /* ModelManager.swift in Sources */,
 				2ABB11E5287B0E2300580F5D /* SceneDelegate.swift in Sources */,
 				2AA26EEB287B86DB003C5045 /* PetModel.swift in Sources */,
 				2AA26EEE287B879D003C5045 /* PetTableViewController.swift in Sources */,
