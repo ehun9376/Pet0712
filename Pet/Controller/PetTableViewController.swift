@@ -32,6 +32,11 @@ class PetTableViewController: UIViewController {
                 print(error)
             }
         }
+        if let results = UserDefaults.standard.object(forKey: "pet") as? Data {
+            guard let petModels = PetModel.deCodeData(unarchivedObject: results) else { return  }
+            print(petModels)
+        }
+
     }
     
     func setDefaultTableView() {
@@ -48,23 +53,14 @@ class PetTableViewController: UIViewController {
                                                       cellAction: { rowModel in
                 guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
                 self.gotoPetDetailVC(petModel: rowModel.petModel)
+                if let petModel = rowModel.petModel, let data = PetModel.encodeData(widgetDataArray: [petModel]){
+                    UserDefaults.standard.set(data, forKey: "pet")
+                }
             }))
         }
         self.adapter?.updateTableViewData(rowModels: rowModels)
         
     }
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destination = segue.destination as? PetViewController{
-//            destination.pet = petList[mTableView.indexPathForSelectedRow!.row]
-//        }
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "showDetails", sender: self)
-//    }
     
     func gotoPetDetailVC(petModel:PetModel?) {
         if let petModel = petModel {
@@ -76,33 +72,4 @@ class PetTableViewController: UIViewController {
     }
     
 }
-
-//
-//extension PetTableViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return petList.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "dogCell", for: indexPath)
-//        as! PetTableViewCell
-//
-//        let pet = petList[indexPath.row]
-//        cell.myLabel.text = pet.animalKind
-//        cell.myImageView.sd_setImage(with: URL(string: pet.albumFile),
-//        placeholderImage:UIImage(named:"LoadingImage"), options:[], completed: nil)
-//
-//
-//        return cell
-//    }
-//
-//
-//}
-//
-//func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 100
-//}
-
-
 
