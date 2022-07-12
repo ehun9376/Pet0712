@@ -34,13 +34,6 @@ class PetTableViewController: UIViewController {
                 print(error)
             }
         }
-        if let petData = UserDefaults.standard.object(forKey: "pet") as? Data {
-            if let loadedPets = try? JSONDecoder().decode([PetModel].self, from: petData) {
-                self.lovePetList  = loadedPets
-            }
-        }
-
-
     }
     
     func setDefaultTableView() {
@@ -49,28 +42,46 @@ class PetTableViewController: UIViewController {
     }
     
     func setupRow() {
+        self.getLoveList()
         var rowModels: [CellRowModel] = []
         for pet in self.petList {
-            if self.lovePetList.contains(pet){
-                print("LOVeeeee")
-            }
             rowModels.append(PetTableViewCellRowModel(lableTitle: pet.animalVariety,
                                                       imageURLStr: pet.albumFile,
+                                                      isLove: self.lovePetList.contains(pet),
                                                       petModel: pet,
+                                                      loveButtonAction: { petModel in
+                if self.lovePetList.contains(petModel) {
+                    self.lovePetList = self.lovePetList.filter { lovedpetModel in
+                        lovedpetModel != petModel
+                    }
+                } else {
+                    self.lovePetList.append(petModel)
+                }
+                self.setLoveList()
+                self.setupRow()
+            },
                                                       cellAction: { rowModel in
                 guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
                 self.gotoPetDetailVC(petModel: rowModel.petModel)
-                if let petModel = rowModel.petModel{
-                    let encoder = JSONEncoder()
-                    if let encoded = try? encoder.encode([petModel]) {
-                        let defaults = UserDefaults.standard
-                        defaults.set(encoded, forKey: "pet")
-                    }
-                }
             }))
         }
         self.adapter?.updateTableViewData(rowModels: rowModels)
         
+    }
+    
+    func getLoveList() {
+        if let petData = UserDefaults.standard.object(forKey: "pet") as? Data {
+            if let loadedPets = try? JSONDecoder().decode([PetModel].self, from: petData) {
+                self.lovePetList  = loadedPets
+            }
+        }
+    }
+    func setLoveList() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(self.lovePetList) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "pet")
+        }
     }
     
     func gotoPetDetailVC(petModel:PetModel?) {

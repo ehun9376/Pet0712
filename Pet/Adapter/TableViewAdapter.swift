@@ -10,13 +10,13 @@ import UIKit
 
 class TableViewAdapter: NSObject {
     
-    weak public var tableView: UITableView?
+    var tableView: UITableView?
     
-    var rowModels : [CellRowModel] = []
+    var rowModels: [CellRowModel] = []
     
     init(_ tableView: UITableView){
-        self.tableView = tableView
         super.init()
+        self.tableView = tableView
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
     }

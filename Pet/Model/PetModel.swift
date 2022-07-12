@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class PetModel: Codable, Equatable {
+struct PetModel: Codable, Equatable {
     static func == (lhs: PetModel, rhs: PetModel) -> Bool {
         return lhs.albumFile == rhs.albumFile &&
         lhs.albumUpdate == rhs.albumUpdate &&
