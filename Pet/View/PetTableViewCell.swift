@@ -59,7 +59,7 @@ extension PetTableViewCell: CellViewBase {
                                              placeholderImage:UIImage(named:"LoadingImage"),
                                              options:[.allowInvalidSSLCertificates],
                                              completed:{(image, error, cacheTRype, url)in
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription ?? "")
                 })
             }
         }

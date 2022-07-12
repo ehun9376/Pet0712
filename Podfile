@@ -7,6 +7,4 @@ target 'Pet' do
 
   # Pods for Pet
 pod 'SDWebImage'
-pod 'FirebaseAuth'
-pod 'FirebaseFirestore'
 end
