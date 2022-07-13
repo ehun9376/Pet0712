@@ -24,6 +24,13 @@ class CellRowModel: CellRowModelBase {
     }
     var cellDidSelect: ((CellRowModel)->())?
     var indexPath: IndexPath?
+    weak var tableView: UITableView?
+    
+    func updateCellView() {
+        if let tableView = tableView {
+            tableView.reloadRows(at: [self.indexPath ?? IndexPath()], with: .none)
+        }
+    }
 }
 
 
@@ -48,6 +55,7 @@ class TableViewAdapter: NSObject {
 
         }
     }
+    
 }
 extension TableViewAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +65,7 @@ extension TableViewAdapter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.rowModels[indexPath.row].indexPath = indexPath
+        self.rowModels[indexPath.row].tableView = tableView
         let rowModel = self.rowModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: rowModel.cellReUseID(), for: indexPath)
         if let cell = cell as? CellViewBase {

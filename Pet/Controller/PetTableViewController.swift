@@ -44,15 +44,23 @@ class PetTableViewController: UIViewController {
     func setupRow() {
         self.getLoveList()
         var rowModels: [CellRowModel] = []
-        for pet in self.petList {
-            rowModels.append(PetTableViewCellRowModel(lableTitle: pet.animalVariety,
-                                                      imageURLStr: pet.albumFile,
-                                                      isLove: self.lovePetList.contains(pet),
-                                                      petModel: pet,
-                                                      shareButtonAction: { petVariety,petImage in
-                self.showShareVC(petVariety: petVariety, petImage: petImage)
-            },
-                                                      loveButtonAction: { petModel in
+        let sortList = self.petList.sorted { lPet, rPet in
+            lPet.animalId ?? 0  > rPet.animalId ?? 0
+        }
+        for pet in sortList {
+            let petTableViewCellRowModel = PetTableViewCellRowModel(lableTitle: pet.animalVariety,
+                                                                    imageURLStr: pet.albumFile,
+                                                                    isLove: self.lovePetList.contains(pet),
+                                                                    petModel: pet,
+                                                                    shareButtonAction: { petVariety,petImage in
+                              self.showShareVC(petVariety: petVariety, petImage: petImage)
+                          },
+                                                                    cellAction: { rowModel in
+                              guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
+                              self.gotoPetDetailVC(petModel: rowModel.petModel)
+                          })
+            
+            petTableViewCellRowModel.loveButtonAction = { petModel in
                 if self.lovePetList.contains(petModel) {
                     self.lovePetList = self.lovePetList.filter { lovedpetModel in
                         lovedpetModel != petModel
@@ -61,12 +69,10 @@ class PetTableViewController: UIViewController {
                     self.lovePetList.append(petModel)
                 }
                 self.setLoveList()
-                self.setupRow()
-            },
-                                                      cellAction: { rowModel in
-                guard  let rowModel =  rowModel as? PetTableViewCellRowModel else { return }
-                self.gotoPetDetailVC(petModel: rowModel.petModel)
-            }))
+                petTableViewCellRowModel.isLove.toggle()
+                petTableViewCellRowModel.updateCellView()
+            }
+            rowModels.append(petTableViewCellRowModel)
         }
         self.adapter?.updateTableViewData(rowModels: rowModels)
         
