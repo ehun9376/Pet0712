@@ -50,10 +50,7 @@ class PetTableViewController: UIViewController {
                                                       isLove: self.lovePetList.contains(pet),
                                                       petModel: pet,
                                                       shareButtonAction: { petVariety,petImage in
-                let activityVC = UIActivityViewController(activityItems: [petVariety,petImage],
-                                                          applicationActivities: nil)
-                // 顯示出我們的 activityVC。
-                self.present(activityVC, animated: true, completion: nil)
+                self.showShareVC(petVariety: petVariety, petImage: petImage)
             },
                                                       loveButtonAction: { petModel in
                 if self.lovePetList.contains(petModel) {
@@ -73,6 +70,12 @@ class PetTableViewController: UIViewController {
         }
         self.adapter?.updateTableViewData(rowModels: rowModels)
         
+    }
+    
+    func showShareVC(petVariety: String = "",petImage: UIImage = UIImage()) {
+        let activityVC = UIActivityViewController(activityItems: [petVariety,petImage],
+                                                  applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
     
     func getLoveList() {
