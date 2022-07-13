@@ -8,6 +8,25 @@
 import Foundation
 import UIKit
 
+
+protocol CellViewBase {
+    func setupCellView(rowModel: CellRowModel)
+}
+
+protocol CellRowModelBase {
+    func cellReUseID() -> String
+}
+
+
+class CellRowModel: CellRowModelBase {
+    func cellReUseID() -> String {
+        fatalError("Need Override ")
+    }
+    var cellDidSelect: ((CellRowModel)->())?
+    var indexPath: IndexPath?
+}
+
+
 class TableViewAdapter: NSObject {
     
     var tableView: UITableView?

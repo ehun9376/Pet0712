@@ -49,6 +49,12 @@ class PetTableViewController: UIViewController {
                                                       imageURLStr: pet.albumFile,
                                                       isLove: self.lovePetList.contains(pet),
                                                       petModel: pet,
+                                                      shareButtonAction: { petVariety,petImage in
+                let activityVC = UIActivityViewController(activityItems: [petVariety,petImage],
+                                                          applicationActivities: nil)
+                // 顯示出我們的 activityVC。
+                self.present(activityVC, animated: true, completion: nil)
+            },
                                                       loveButtonAction: { petModel in
                 if self.lovePetList.contains(petModel) {
                     self.lovePetList = self.lovePetList.filter { lovedpetModel in

@@ -23,25 +23,36 @@
                             <constraint firstAttribute="height" constant="200" id="jTu-c7-bd7"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpF-d9-5f9">
-                        <rect key="frame" x="243" y="179" width="67" height="31"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhq-ZJ-S4j">
                         <rect key="frame" x="220" y="100" width="90" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfW-gB-zni">
+                        <rect key="frame" x="220" y="179" width="74" height="31"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpF-d9-5f9">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="愛"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTY-yA-7NS">
+                                <rect key="frame" x="37" y="0.0" width="37" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="分"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="cfW-gB-zni" firstAttribute="bottom" secondItem="yiM-C6-xJ0" secondAttribute="bottom" id="DCh-OJ-ehj"/>
                     <constraint firstItem="yiM-C6-xJ0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Pdz-Zf-DsD"/>
-                    <constraint firstAttribute="trailing" secondItem="JpF-d9-5f9" secondAttribute="trailing" constant="10" id="Qw1-DW-6A0"/>
-                    <constraint firstItem="JpF-d9-5f9" firstAttribute="bottom" secondItem="yiM-C6-xJ0" secondAttribute="bottom" id="R5K-p0-fUd"/>
                     <constraint firstItem="Rhq-ZJ-S4j" firstAttribute="centerY" secondItem="yiM-C6-xJ0" secondAttribute="centerY" id="W13-hk-fMC"/>
                     <constraint firstItem="yiM-C6-xJ0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="XAX-iy-ygV"/>
                     <constraint firstAttribute="bottom" secondItem="yiM-C6-xJ0" secondAttribute="bottom" constant="10" id="XCa-x3-pyw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cfW-gB-zni" secondAttribute="trailing" constant="10" id="a5g-Je-ARt"/>
+                    <constraint firstItem="cfW-gB-zni" firstAttribute="leading" secondItem="yiM-C6-xJ0" secondAttribute="trailing" constant="10" id="drS-HK-tWs"/>
                     <constraint firstAttribute="trailing" secondItem="Rhq-ZJ-S4j" secondAttribute="trailing" constant="10" id="kUz-Nm-4hY"/>
                     <constraint firstItem="Rhq-ZJ-S4j" firstAttribute="leading" secondItem="yiM-C6-xJ0" secondAttribute="trailing" constant="10" id="wEn-QF-WRf"/>
                 </constraints>
@@ -51,6 +62,7 @@
                 <outlet property="loveButton" destination="JpF-d9-5f9" id="gxq-bV-LEJ"/>
                 <outlet property="myImageView" destination="yiM-C6-xJ0" id="UpA-bf-HQ1"/>
                 <outlet property="myLabel" destination="Rhq-ZJ-S4j" id="v72-7K-l8I"/>
+                <outlet property="shareButton" destination="GTY-yA-7NS" id="ei4-75-iQh"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="155.35714285714286"/>
         </tableViewCell>

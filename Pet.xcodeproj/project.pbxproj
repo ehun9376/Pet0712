@@ -21,7 +21,6 @@
 		2ABB11EF287B0E2300580F5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB11ED287B0E2300580F5D /* LaunchScreen.storyboard */; };
 		36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 36DC8C63287D01D700CFDE06 /* SDWebImage */; };
 		36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */; };
-		36DC8C69287D0A8300CFDE06 /* TableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C68287D0A8300CFDE06 /* TableViewCellBase.swift */; };
 		88D97E589960A9161EC596A5 /* Pods_Pet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E8702CDDB39FA10C2F849A /* Pods_Pet.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +42,6 @@
 		2ABB11EE287B0E2300580F5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ABB11F0287B0E2300580F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
-		36DC8C68287D0A8300CFDE06 /* TableViewCellBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellBase.swift; sourceTree = "<group>"; };
 		CBEF757609335E012AEEDAB5 /* Pods-Pet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.debug.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */,
-				36DC8C68287D0A8300CFDE06 /* TableViewCellBase.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36DC8C69287D0A8300CFDE06 /* TableViewCellBase.swift in Sources */,
 				2ABB11E7287B0E2300580F5D /* ViewController.swift in Sources */,
 				2AA26EE4287B8660003C5045 /* PetTableViewCell.swift in Sources */,
 				2AA26EF3287B8BFE003C5045 /* PetViewController.swift in Sources */,
