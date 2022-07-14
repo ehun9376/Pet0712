@@ -21,12 +21,10 @@
 		2ABB11EF287B0E2300580F5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB11ED287B0E2300580F5D /* LaunchScreen.storyboard */; };
 		36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 36DC8C63287D01D700CFDE06 /* SDWebImage */; };
 		36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */; };
-		88D97E589960A9161EC596A5 /* Pods_Pet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E8702CDDB39FA10C2F849A /* Pods_Pet.framework */; };
+		7FBB354B45644C76B477BD53 /* Pods_Pet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8203874E806FD86442F4C /* Pods_Pet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D636C31994BE36D3805B906 /* Pods-Pet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.release.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.release.xcconfig"; sourceTree = "<group>"; };
-		15E8702CDDB39FA10C2F849A /* Pods_Pet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA26EE2287B8660003C5045 /* PetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetTableViewCell.swift; sourceTree = "<group>"; };
 		2AA26EE3287B8660003C5045 /* PetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetTableViewCell.xib; sourceTree = "<group>"; };
 		2AA26EE7287B8694003C5045 /* NetworkSerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSerview.swift; sourceTree = "<group>"; };
@@ -42,7 +40,9 @@
 		2ABB11EE287B0E2300580F5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ABB11F0287B0E2300580F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
-		CBEF757609335E012AEEDAB5 /* Pods-Pet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.debug.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.debug.xcconfig"; sourceTree = "<group>"; };
+		61A8203874E806FD86442F4C /* Pods_Pet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C26D39AF0FFF14194E8B304D /* Pods-Pet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.debug.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.debug.xcconfig"; sourceTree = "<group>"; };
+		FF87A5E4DA917E72B00E0C8E /* Pods-Pet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.release.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */,
-				88D97E589960A9161EC596A5 /* Pods_Pet.framework in Frameworks */,
+				7FBB354B45644C76B477BD53 /* Pods_Pet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +99,7 @@
 				2ABB11E1287B0E2300580F5D /* Pet */,
 				2ABB11E0287B0E2300580F5D /* Products */,
 				B39D3153D2B3501D52A15BEC /* Pods */,
-				7F7167D4D346D5227AFF9E8D /* Frameworks */,
+				5833DBD0BC19096D7F18F420 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,10 +137,10 @@
 			path = Adapter;
 			sourceTree = "<group>";
 		};
-		7F7167D4D346D5227AFF9E8D /* Frameworks */ = {
+		5833DBD0BC19096D7F18F420 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				15E8702CDDB39FA10C2F849A /* Pods_Pet.framework */,
+				61A8203874E806FD86442F4C /* Pods_Pet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,8 +148,8 @@
 		B39D3153D2B3501D52A15BEC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CBEF757609335E012AEEDAB5 /* Pods-Pet.debug.xcconfig */,
-				0D636C31994BE36D3805B906 /* Pods-Pet.release.xcconfig */,
+				C26D39AF0FFF14194E8B304D /* Pods-Pet.debug.xcconfig */,
+				FF87A5E4DA917E72B00E0C8E /* Pods-Pet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -161,11 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2ABB11F3287B0E2300580F5D /* Build configuration list for PBXNativeTarget "Pet" */;
 			buildPhases = (
-				040C343495A995BAD85AD346 /* [CP] Check Pods Manifest.lock */,
+				1FE08A3E5912E60E810C5F6F /* [CP] Check Pods Manifest.lock */,
 				2ABB11DB287B0E2300580F5D /* Sources */,
 				2ABB11DC287B0E2300580F5D /* Frameworks */,
 				2ABB11DD287B0E2300580F5D /* Resources */,
-				82EB8E4A0EAF1A510DC257AD /* [CP] Embed Pods Frameworks */,
+				A3E6A5829400C2A0CA2D6FEA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -204,7 +204,7 @@
 			);
 			mainGroup = 2ABB11D6287B0E2300580F5D;
 			packageReferences = (
-				2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
 			);
 			productRefGroup = 2ABB11E0287B0E2300580F5D /* Products */;
 			projectDirPath = "";
@@ -230,7 +230,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		040C343495A995BAD85AD346 /* [CP] Check Pods Manifest.lock */ = {
+		1FE08A3E5912E60E810C5F6F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,7 +252,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82EB8E4A0EAF1A510DC257AD /* [CP] Embed Pods Frameworks */ = {
+		A3E6A5829400C2A0CA2D6FEA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -428,7 +428,7 @@
 		};
 		2ABB11F4287B0E2300580F5D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBEF757609335E012AEEDAB5 /* Pods-Pet.debug.xcconfig */;
+			baseConfigurationReference = C26D39AF0FFF14194E8B304D /* Pods-Pet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -457,7 +457,7 @@
 		};
 		2ABB11F5287B0E2300580F5D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D636C31994BE36D3805B906 /* Pods-Pet.release.xcconfig */;
+			baseConfigurationReference = FF87A5E4DA917E72B00E0C8E /* Pods-Pet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -508,7 +508,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -521,7 +521,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		36DC8C63287D01D700CFDE06 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = 2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
