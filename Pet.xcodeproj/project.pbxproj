@@ -21,6 +21,8 @@
 		2ABB11EF287B0E2300580F5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB11ED287B0E2300580F5D /* LaunchScreen.storyboard */; };
 		36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 36DC8C63287D01D700CFDE06 /* SDWebImage */; };
 		36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */; };
+		36DC8C7628815D6D00CFDE06 /* BottomBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C7528815D6D00CFDE06 /* BottomBarButton.swift */; };
+		36DC8C7828815EA300CFDE06 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C7728815EA300CFDE06 /* BottomBar.swift */; };
 		7FBB354B45644C76B477BD53 /* Pods_Pet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8203874E806FD86442F4C /* Pods_Pet.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		2ABB11EE287B0E2300580F5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ABB11F0287B0E2300580F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
+		36DC8C7528815D6D00CFDE06 /* BottomBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarButton.swift; sourceTree = "<group>"; };
+		36DC8C7728815EA300CFDE06 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		61A8203874E806FD86442F4C /* Pods_Pet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C26D39AF0FFF14194E8B304D /* Pods-Pet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.debug.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.debug.xcconfig"; sourceTree = "<group>"; };
 		FF87A5E4DA917E72B00E0C8E /* Pods-Pet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet.release.xcconfig"; path = "Target Support Files/Pods-Pet/Pods-Pet.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			children = (
 				2ABB11E2287B0E2300580F5D /* AppDelegate.swift */,
 				2ABB11E4287B0E2300580F5D /* SceneDelegate.swift */,
+				36DC8C7428815D5700CFDE06 /* CustomButton */,
 				36DC8C65287D0A2900CFDE06 /* Adapter */,
 				2AA26EE9287B86B6003C5045 /* Net */,
 				2AA26EE6287B8665003C5045 /* View */,
@@ -135,6 +140,15 @@
 				36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */,
 			);
 			path = Adapter;
+			sourceTree = "<group>";
+		};
+		36DC8C7428815D5700CFDE06 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				36DC8C7528815D6D00CFDE06 /* BottomBarButton.swift */,
+				36DC8C7728815EA300CFDE06 /* BottomBar.swift */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		5833DBD0BC19096D7F18F420 /* Frameworks */ = {
@@ -204,7 +218,7 @@
 			);
 			mainGroup = 2ABB11D6287B0E2300580F5D;
 			packageReferences = (
-				2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */,
+				2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 2ABB11E0287B0E2300580F5D /* Products */;
 			projectDirPath = "";
@@ -276,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36DC8C7628815D6D00CFDE06 /* BottomBarButton.swift in Sources */,
 				2ABB11E7287B0E2300580F5D /* ViewController.swift in Sources */,
 				2AA26EE4287B8660003C5045 /* PetTableViewCell.swift in Sources */,
 				2AA26EF3287B8BFE003C5045 /* PetViewController.swift in Sources */,
@@ -283,6 +298,7 @@
 				2ABB11E3287B0E2300580F5D /* AppDelegate.swift in Sources */,
 				36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */,
 				2ABB11E5287B0E2300580F5D /* SceneDelegate.swift in Sources */,
+				36DC8C7828815EA300CFDE06 /* BottomBar.swift in Sources */,
 				2AA26EEB287B86DB003C5045 /* PetModel.swift in Sources */,
 				2AA26EEE287B879D003C5045 /* PetTableViewController.swift in Sources */,
 			);
@@ -508,7 +524,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */ = {
+		2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -521,7 +537,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		36DC8C63287D01D700CFDE06 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage.git" */;
+			package = 2AA26EEF287B87E1003C5045 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
