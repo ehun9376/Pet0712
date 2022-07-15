@@ -29,18 +29,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="IKx-68-gfY" kind="show" identifier="dogcell" id="kwy-hF-K08"/>
-                                </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcL-Uu-2JT" userLabel="catButton">
                                 <rect key="frame" x="234" y="384" width="145" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="IKx-68-gfY" kind="show" identifier="catCell" id="no9-7k-DwT"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -55,13 +49,13 @@
         <!--Pet Table View Controller-->
         <scene sceneID="HGi-e9-Vyh">
             <objects>
-                <viewController id="IKx-68-gfY" customClass="PetTableViewController" customModule="Pet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetTableViewController" id="IKx-68-gfY" customClass="PetTableViewController" customModule="Pet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8am-xn-uGZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hvF-k3-IXO">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -198,9 +192,6 @@
             <point key="canvasLocation" x="2696" y="51"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="no9-7k-DwT"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="cat" width="302" height="416"/>
         <image name="dog" width="228" height="276"/>

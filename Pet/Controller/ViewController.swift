@@ -12,14 +12,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setBottomBarView()
     }
+    
+    func setBottomBarView() {
+        let height: CGFloat = 80
+        
+        let searchButton: BottomBarButton = .search(action: {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "PetTableViewController") {
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        })
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let _sender = sender as? UIButton else { return }
-        print(_sender.tag)
-        if let vc = segue.destination as? PetTableViewController {
-            vc.petType = _sender.tag == 0 ? .dog : .cat
-        }
+        
+        let stackBottomView = StackBottomBarView(bottomBarButtons: [searchButton])
+        stackBottomView.backgroundColor = UIColor.white
+        stackBottomView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(stackBottomView)
+        stackBottomView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        stackBottomView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        stackBottomView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        stackBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
 }
