@@ -9,23 +9,19 @@ import UIKit
 
 import UIKit
 import SDWebImage
-class PetTableViewController: UIViewController {
+class PetTableViewController: BaseTableViewController {
 
-    @IBOutlet weak  var mTableView: UITableView!
-    
-    var adapter: TableViewAdapter?
-    
+    var searchPetConditions = SearchPetConditions()
+        
     var petList: [PetModel] = []
     
     var lovePetList: [PetModel] = []
     
-    var petType: PetType = .dog
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setDefaultTableView()
-        NetworkService.downloadJson(type: petType) { result in
+        NetworkService.downloadJson() { result in
             switch result {
             case .success(let data):
                 self.petList = data
@@ -36,18 +32,45 @@ class PetTableViewController: UIViewController {
         }
     }
     
-    func setDefaultTableView() {
-        self.adapter = .init(mTableView)
-        mTableView.register(UINib(nibName: PetTableViewCellRowModel().cellReUseID(), bundle: nil), forCellReuseIdentifier: PetTableViewCellRowModel().cellReUseID())
+    override func setRegisID() -> [String] {
+        return [
+            "PetTableViewCell"
+        ]
+    }
+    
+    func filterData(petList: [PetModel] = []) -> [PetModel] {
+        var tempPetList = petList
+        
+        
+        
+        if self.searchPetConditions.petType != .pleaseSelect {
+            tempPetList = tempPetList.filter({ petModel in
+                petModel.animalKind == self.searchPetConditions.petType.title
+            })
+        }
+        
+       
+        
+        
+        if self.searchPetConditions.sex != .pleaseSelect {
+            let sexCode = self.searchPetConditions.sex.title == "公" ? "M" : "F"
+            tempPetList = tempPetList.filter({ petModel in
+                petModel.animalSex == sexCode
+            })
+        }
+        
+
+        return tempPetList
     }
     
     func setupRow() {
         self.getLoveList()
         var rowModels: [CellRowModel] = []
-        let sortList = self.petList.sorted { lPet, rPet in
+        let sortFilterList = self.filterData(petList: self.petList.sorted { lPet, rPet in
             lPet.animalId ?? 0  > rPet.animalId ?? 0
-        }
-        for pet in sortList {
+        })
+        
+        for pet in sortFilterList {
             let petTableViewCellRowModel = PetTableViewCellRowModel(lableTitle: pet.animalVariety,
                                                                     imageURLStr: pet.albumFile,
                                                                     isLove: self.lovePetList.contains(pet),
@@ -100,11 +123,6 @@ class PetTableViewController: UIViewController {
     }
     
     func gotoPetDetailVC(petModel:PetModel?) {
-        if let petModel = petModel {
-            let petDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "PetViewController") as? PetViewController
-            petDetailVC?.pet = petModel
-            self.navigationController?.pushViewController(petDetailVC ?? .init(), animated: true)
-        }
         
     }
     

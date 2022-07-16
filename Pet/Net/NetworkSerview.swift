@@ -6,16 +6,10 @@
 //
 
 import Foundation
-// 類別
-enum PetType {
-    case dog
-    case cat
-}
 // 網路層
 class NetworkService {
-    static func downloadJson(type: PetType, completed: ((Result<[PetModel], Error>) -> ())? = nil) {
-        let _type: String = type == .dog ? "%E7%8B%97" : "%E8%B2%93"
-        let url = URL(string: "https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL&$top=20&$skip=0&animal_kind=" + _type)
+    static func downloadJson(completed: ((Result<[PetModel], Error>) -> ())? = nil) {
+        let url = URL(string: "https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL&$top=20&$skip=0" )
         URLSession.shared.dataTask(with: url!) { data, response, error in
 
             if let error = error {

@@ -55,6 +55,15 @@ class BottomBarButton: UIButton {
         button.setTitle("搜尋", for: .normal)
         return button
     }
+    
+    static func confirm(action: (()->())?) -> BottomBarButton {
+        let button = BottomBarButton(touchUpInsideAction: action)
+        commonSet(button: button, action: action)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.red
+        button.setTitle("確定", for: .normal)
+        return button
+    }
         
     class func commonSet(button: BottomBarButton, action: (()->())?) {
         button.titleLabel?.font = .systemFont(ofSize: 18)
