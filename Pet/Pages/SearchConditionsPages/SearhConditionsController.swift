@@ -90,7 +90,7 @@ class SearhConditionsController: BaseTableViewController {
     func gotoSelectConditionsVC(selectType: SelectType ,dataSource: [Any], selectedData: [Any],confirmAction: (([Any])->())?) {
         let vc = SelectConditionsController(selectType: selectType,
                                             dataSource: dataSource,
-                                            selectedData: dataSource,
+                                            selectedData: selectedData,
                                             confirmAction: confirmAction)
         self.navigationController?.pushViewController(vc, animated: true)
         

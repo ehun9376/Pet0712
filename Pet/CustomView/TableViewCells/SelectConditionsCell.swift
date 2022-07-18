@@ -57,14 +57,17 @@ class SelectConditionsCell: UITableViewCell {
         self.selectImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         self.selectImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         self.selectImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        self.selectImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        self.selectImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.titleLabel)
         self.titleLabel.centerYAnchor.constraint(equalTo: self.selectImageView.centerYAnchor).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: self.selectImageView.trailingAnchor).isActive = true
     }
-    
+    override func awakeFromNib() {
+        self.selectionStyle = .none
+        self.selectImageView.contentMode = .center
+    }
     
 }
 
@@ -74,7 +77,9 @@ extension SelectConditionsCell: CellViewBase {
         
         self.titleLabel.text = rowModel.text
         
-        let selectImage: UIImage = .init(named: rowModel.isSelect ? "" : "") ?? UIImage()
-        self.selectImageView.image = selectImage
+        let selectImage: UIImage = .init(named: rowModel.isSelect ? "checkMark" : "") ?? UIImage()
+        self.selectImageView.image = selectImage.resizeImage(targetSize: CGSize(width: 15, height: 15))
     }
 }
+
+

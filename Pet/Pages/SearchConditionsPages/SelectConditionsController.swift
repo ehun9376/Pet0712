@@ -107,6 +107,7 @@ class SelectConditionsController<dataSourceType,selectedDataType>: BaseTableView
                     }
                     guard let _selectedData  = _selectedData as? selectedDataType else { return }
                     self.selectedData = _selectedData
+                    self.setupRow()
                 }))
             }
         }

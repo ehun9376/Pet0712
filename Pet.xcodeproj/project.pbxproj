@@ -17,6 +17,7 @@
 		2ABB11E7287B0E2300580F5D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABB11E6287B0E2300580F5D /* BaseTableViewController.swift */; };
 		2ABB11EC287B0E2300580F5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB11EB287B0E2300580F5D /* Assets.xcassets */; };
 		2ABB11EF287B0E2300580F5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABB11ED287B0E2300580F5D /* LaunchScreen.storyboard */; };
+		36BE15A42884F74E0059F276 /* PublicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE15A32884F74E0059F276 /* PublicExtension.swift */; };
 		36DC8C64287D01D700CFDE06 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 36DC8C63287D01D700CFDE06 /* SDWebImage */; };
 		36DC8C67287D0A3D00CFDE06 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */; };
 		36DC8C7628815D6D00CFDE06 /* BottomBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DC8C7528815D6D00CFDE06 /* BottomBarButton.swift */; };
@@ -42,6 +43,7 @@
 		2ABB11EB287B0E2300580F5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ABB11EE287B0E2300580F5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ABB11F0287B0E2300580F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36BE15A32884F74E0059F276 /* PublicExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicExtension.swift; sourceTree = "<group>"; };
 		36DC8C66287D0A3D00CFDE06 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
 		36DC8C7528815D6D00CFDE06 /* BottomBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarButton.swift; sourceTree = "<group>"; };
 		36DC8C7728815EA300CFDE06 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				2ABB11E2287B0E2300580F5D /* AppDelegate.swift */,
 				2ABB11E4287B0E2300580F5D /* SceneDelegate.swift */,
+				36BE15A32884F74E0059F276 /* PublicExtension.swift */,
 				948364B628824C73009E4126 /* BaseTableView */,
 				36DC8C65287D0A2900CFDE06 /* Adapter */,
 				2AA26EE9287B86B6003C5045 /* Net */,
@@ -352,6 +355,7 @@
 				948364C02882559B009E4126 /* SelectConditionsController.swift in Sources */,
 				948364B4288246F8009E4126 /* SearchConditionsCell.swift in Sources */,
 				2AA26EEB287B86DB003C5045 /* PetModel.swift in Sources */,
+				36BE15A42884F74E0059F276 /* PublicExtension.swift in Sources */,
 				2AA26EEE287B879D003C5045 /* PetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
