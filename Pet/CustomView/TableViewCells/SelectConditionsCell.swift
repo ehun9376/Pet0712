@@ -77,7 +77,7 @@ extension SelectConditionsCell: CellViewBase {
         
         self.titleLabel.text = rowModel.text
         
-        let selectImage: UIImage = .init(named: rowModel.isSelect ? "checkMark" : "") ?? UIImage()
+        let selectImage: UIImage? = rowModel.isSelect ? UIImage(named: "checkMark") : UIImage()
         self.selectImageView.image = selectImage
     }
 }

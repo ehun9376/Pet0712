@@ -6,11 +6,6 @@
 //
 
 import Foundation
-extension String {
-    mutating func returnToPleaseSelect() {
-        self = "請開心"
-    }
-}
 
 class SearchPetConditions: Equatable {
     static func == (lhs: SearchPetConditions, rhs: SearchPetConditions) -> Bool {
@@ -39,9 +34,7 @@ class SearhConditionsController: BaseTableViewController {
             "SearchConditionsCell"
         ]
     }
-    
 
-    
     func setupRow() {
         
         self.rowModels.removeAll()
