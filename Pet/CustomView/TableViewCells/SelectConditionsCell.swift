@@ -78,7 +78,7 @@ extension SelectConditionsCell: CellViewBase {
         self.titleLabel.text = rowModel.text
         
         let selectImage: UIImage = .init(named: rowModel.isSelect ? "checkMark" : "") ?? UIImage()
-        self.selectImageView.image = selectImage.resizeImage(targetSize: CGSize(width: 15, height: 15))
+        self.selectImageView.image = selectImage
     }
 }
 
