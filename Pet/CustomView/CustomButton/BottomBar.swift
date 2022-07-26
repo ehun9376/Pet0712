@@ -11,8 +11,7 @@ import UIKit
 class StackBottomBarView: UIView {
     
     convenience init(bottomBarButtons: [BottomBarButton] = []) {
-        let height: CGFloat = 70
-        self.init(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height))
+        self.init(frame: .zero)
         self.setupView(bottomBarButtons: bottomBarButtons)
     }
     required init?(coder: NSCoder) {
@@ -41,12 +40,20 @@ class StackBottomBarView: UIView {
         
         stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 33).isActive = true
+        stackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -33.0).isActive = true
+//        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        
+        let totalButtons = bottomBarButtons.count
+        let spacing: CGFloat = 20
+        let availableWidth = UIScreen.main.bounds.width - CGFloat(totalButtons - 1) * spacing - 66
+        let minWidth = min(availableWidth / CGFloat(totalButtons), CGFloat(140))
         
         for button in bottomBarButtons {
-            button.translatesAutoresizingMaskIntoConstraints = false
+            
             stackView.addArrangedSubview(button)
-            button.heightAnchor.constraint(equalToConstant: 45).isActive = true
-            button.widthAnchor.constraint(equalToConstant: 140).isActive = true
+//            button.heightAnchor.constraint(equalToConstant: 45).isActive = true
+            button.widthAnchor.constraint(equalToConstant: minWidth).isActive = true
         }
         
         

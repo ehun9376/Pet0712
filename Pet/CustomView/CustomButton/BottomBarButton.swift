@@ -66,6 +66,7 @@ class BottomBarButton: UIButton {
     }
         
     class func commonSet(button: BottomBarButton, action: (()->())?) {
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 18)
         button.clipsToBounds = true
         button.layer.cornerRadius = 9
