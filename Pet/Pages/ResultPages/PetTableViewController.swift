@@ -19,18 +19,17 @@ class PetTableViewController: BaseTableViewController {
     
     
     override func viewDidLoad() {
+        self.setRegisID(cellIDs: [
+            "PetTableViewCell"
+        ])
+        
+        
         self.defaultBottomBarHeight = self.view.safeAreaInsets.bottom
         super.viewDidLoad()
         self.downLoadAPI()
         self.adapter?.reachBottomAction = { _ in
             self.downLoadAPI()
         }
-    }
-    
-    override func setRegisID() -> [String] {
-        return [
-            "PetTableViewCell"
-        ]
     }
     
     func downLoadAPI() {
@@ -47,17 +46,12 @@ class PetTableViewController: BaseTableViewController {
     
     func filterData(petList: [PetModel] = []) -> [PetModel] {
         var tempPetList = petList
-        
-        
-        
+
         if self.searchPetConditions.petType != .pleaseSelect {
             tempPetList = tempPetList.filter({ petModel in
                 petModel.animalKind == self.searchPetConditions.petType.title
             })
         }
-        
-       
-        
         
         if self.searchPetConditions.sex != .pleaseSelect {
             let sexCode = self.searchPetConditions.sex.title == "公" ? "M" : "F"
@@ -65,14 +59,11 @@ class PetTableViewController: BaseTableViewController {
                 petModel.animalSex == sexCode
             })
         }
-        
 
         return tempPetList
     }
     
     func setupRow() {
-
-        
         
         self.getLoveList()
         var rowModels: [CellRowModel] = []

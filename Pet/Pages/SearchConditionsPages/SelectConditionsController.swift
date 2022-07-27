@@ -73,11 +73,9 @@ class SelectConditionsController<dataSourceType,selectedDataType>: BaseTableView
     }
     
     override func viewDidLoad() {
+        self.setRegisID(cellIDs: [SelectConditionsCell.self])
         super.viewDidLoad()
         self.setupRow()
-    }
-    override func regisCellID() {
-        self.defaultTableView.register(SelectConditionsCell.self, forCellReuseIdentifier: "SelectConditionsCell")
     }
     
     func setupRow(){

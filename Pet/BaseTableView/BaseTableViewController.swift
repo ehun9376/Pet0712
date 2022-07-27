@@ -9,8 +9,6 @@ import UIKit
 
 class BaseTableViewController: UIViewController {
     
-    var scrollView = UIScrollView()
-
     var defaultTableView = UITableView()
         
     var rowModels: [CellRowModel] = []
@@ -19,7 +17,7 @@ class BaseTableViewController: UIViewController {
     
     var adapter: TableViewAdapter?
     
-    
+    var cellIDs: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,21 +55,28 @@ class BaseTableViewController: UIViewController {
         self.defaultTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.defaultTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.defaultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant:  -self.defaultBottomBarHeight).isActive = true
-
-        self.defaultTableView.bounces = false
-    }
-    func regisCellID() {
-        
-        for id in self.setRegisID() {
-            self.defaultTableView.register(UINib(nibName: id,
-                                                 bundle: nil),
-                                           forCellReuseIdentifier: id)
-        }
     }
     
-    ///Override this func to set CellIDs
-    func setRegisID() -> [String] {
-        return []
+    func regisCellID() {
+        if let ids = self.cellIDs as? [String] {
+            for id in ids {
+                self.defaultTableView.register(UINib(nibName: id,
+                                                     bundle: nil),
+                                               forCellReuseIdentifier: id)
+            }
+        }
+        
+        if let cells = cellIDs as? [UITableViewCell.Type] {
+            for cell in cells {
+                self.defaultTableView.register(cell, forCellReuseIdentifier: cell.description())
+            }
+        }
+        
+    }
+    
+    ///call this func to set CellIDs
+    func setRegisID<cellType>(cellIDs: cellType) {
+        self.cellIDs = cellIDs
     }
     
     

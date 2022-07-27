@@ -25,14 +25,11 @@ class SearhConditionsController: BaseTableViewController {
     var searchPetConditions = SearchPetConditions()
         
     override func viewDidLoad() {
+        self.setRegisID(cellIDs: [
+            "SearchConditionsCell"
+        ])
         super.viewDidLoad()
         self.setupRow()
-    }
-    
-    override func setRegisID() -> [String] {
-        return [
-            "SearchConditionsCell"
-        ]
     }
 
     func setupRow() {
