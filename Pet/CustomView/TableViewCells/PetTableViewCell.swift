@@ -80,9 +80,7 @@ extension PetTableViewCell: CellViewBase {
             self.myImageView.sd_setImage(with: URL(string: urlStr),
                                          placeholderImage:UIImage(named:"LoadingImage"),
                                          options:[.allowInvalidSSLCertificates],
-                                         completed:{(image, error, cacheTRype, url)in
-                print(error?.localizedDescription ?? "")
-            })
+                                         completed: nil)
         }
 
     }

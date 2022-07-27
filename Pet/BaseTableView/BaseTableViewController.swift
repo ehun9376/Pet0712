@@ -8,8 +8,9 @@
 import UIKit
 
 class BaseTableViewController: UIViewController {
-
     
+    var scrollView = UIScrollView()
+
     var defaultTableView = UITableView()
         
     var rowModels: [CellRowModel] = []
@@ -18,25 +19,47 @@ class BaseTableViewController: UIViewController {
     
     var adapter: TableViewAdapter?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupDefaultTableView()
-        setBottomBarView(buttons:self.setBottomButtons())
+        self.setupDefaultTableView()
+        self.setBottomBarView(buttons:self.setBottomButtons())
         self.adapter = .init(self.defaultTableView)
         self.regisCellID()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setDefaultApp()
+    }
+    
+    
+    
+    func setDefaultApp(){
+        if #available(iOS 13.0, *) {
+            let barAppearance = UINavigationBarAppearance()
+            barAppearance.backgroundColor = .white
+            barAppearance.shadowColor = .clear
+            navigationItem.standardAppearance = barAppearance
+            navigationItem.scrollEdgeAppearance = barAppearance
+        }
+
+        if #available(iOS 15.0, *){
+            UITableView.appearance().sectionHeaderTopPadding = 0
+        }
     }
     
     func setupDefaultTableView() {
         self.defaultTableView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.defaultTableView)
-        self.defaultTableView.contentInset = .init(top: 0, left: 0, bottom: self.defaultBottomBarHeight, right: 0)
-        self.defaultTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.defaultTableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.defaultTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.defaultTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.defaultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.defaultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant:  -self.defaultBottomBarHeight).isActive = true
+
+        self.defaultTableView.bounces = false
     }
-    
     func regisCellID() {
         
         for id in self.setRegisID() {

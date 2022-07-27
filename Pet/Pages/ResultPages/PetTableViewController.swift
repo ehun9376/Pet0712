@@ -17,18 +17,13 @@ class PetTableViewController: BaseTableViewController {
     
     var lovePetList: [PetModel] = []
     
-
     
     override func viewDidLoad() {
+        self.defaultBottomBarHeight = self.view.safeAreaInsets.bottom
         super.viewDidLoad()
-        NetworkService.downloadJson() { result in
-            switch result {
-            case .success(let data):
-                self.petList = data
-                self.setupRow()
-            case .failure(let error):
-                print(error)
-            }
+        self.downLoadAPI()
+        self.adapter?.reachBottomAction = { _ in
+            self.downLoadAPI()
         }
     }
     
@@ -36,6 +31,18 @@ class PetTableViewController: BaseTableViewController {
         return [
             "PetTableViewCell"
         ]
+    }
+    
+    func downLoadAPI() {
+        NetworkService.downloadJson() { result in
+            switch result {
+            case .success(let data):
+                self.petList.append(contentsOf: data)
+                self.setupRow()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func filterData(petList: [PetModel] = []) -> [PetModel] {
@@ -64,11 +71,12 @@ class PetTableViewController: BaseTableViewController {
     }
     
     func setupRow() {
+
+        
+        
         self.getLoveList()
         var rowModels: [CellRowModel] = []
-        let sortFilterList = self.filterData(petList: self.petList.sorted { lPet, rPet in
-            lPet.animalId ?? 0  > rPet.animalId ?? 0
-        })
+        let sortFilterList = self.filterData(petList: self.petList)
         
         for pet in sortFilterList {
             let petTableViewCellRowModel = PetTableViewCellRowModel(lableTitle: pet.animalVariety,

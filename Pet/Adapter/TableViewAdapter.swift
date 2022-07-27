@@ -40,12 +40,15 @@ class TableViewAdapter: NSObject {
     
     var rowModels: [CellRowModel] = []
     
+    var reachBottomAction: ((IndexPath) -> ())?
+    
     init(_ tableView: UITableView){
         super.init()
         self.tableView = tableView
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
     }
+    
     func updateTableViewData(rowModels : [CellRowModel]) {
         
         self.rowModels = rowModels
@@ -53,6 +56,14 @@ class TableViewAdapter: NSObject {
         DispatchQueue.main.async {
             self.tableView?.reloadData()
 
+        }
+    }
+    
+    func insertRowsAtLast(rowModels : [CellRowModel]) {
+        for rowModel in rowModels {
+            self.rowModels.append(rowModel)
+            let indexPath = IndexPath(row: self.rowModels.count, section: 0)
+            self.tableView?.insertRows(at: [indexPath], with: .automatic)
         }
     }
     
@@ -70,6 +81,11 @@ extension TableViewAdapter: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: rowModel.cellReUseID(), for: indexPath)
         if let cell = cell as? CellViewBase {
             cell.setupCellView(rowModel: rowModel)
+        }
+        
+        //如果顯示出來的是最後一個，就執行到底的Action
+        if self.rowModels.count - 1 == indexPath.row, let reachBottomAction = self.reachBottomAction {
+            reachBottomAction(indexPath)
         }
         return cell
     }
