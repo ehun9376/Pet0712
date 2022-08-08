@@ -73,18 +73,20 @@ class SelectConditionsController<dataSourceType,selectedDataType>: BaseTableView
     }
     
     override func viewDidLoad() {
-        self.setRegisID(cellIDs: [SelectConditionsCell.self])
         super.viewDidLoad()
+        self.setRegisID(cellIDs: [SelectConditionsCell.self])
         self.setupRow()
     }
     
     func setupRow(){
         
-        self.rowModels.removeAll()
+        var rowModels: [CellRowModel] = []
+        
+        rowModels.removeAll()
         if let _source = self.dataSource as? [SelectData],
            var _selectedData = self.selectedData as? [SelectData] {
             for data in _source {
-                self.rowModels.append(SelectConditionsCellRowModel(text:data.title,
+                rowModels.append(SelectConditionsCellRowModel(text:data.title,
                                                                    selectData: data,
                                                                    isSelect: _selectedData.contains(data),
                                                                    cellAction: { rowModel in
@@ -110,17 +112,22 @@ class SelectConditionsController<dataSourceType,selectedDataType>: BaseTableView
             }
         }
         
-        self.adapter?.updateTableViewData(rowModels: self.rowModels)
+        self.adapter?.updateTableViewData(rowModels: rowModels)
     }
     
-    override func setBottomButtons() -> [BottomBarButton] {
-        let confirmButton: BottomBarButton = .confirm {
+    override func createBottomBarViewModel() -> BottomBarViewModel {
+
+        
+        let confirm: BottomBarButtonModel = .confirm(style: .white) {
             if let _confirmAction = self.confirmAction{
                 _confirmAction(self.selectedData)
             }
             self.navigationController?.popViewController(animated: true)
         }
-        return [confirmButton]
+        
+        let stackViewModel = StackBottomBarViewModel(backgroundColor: .white, buttonsModels: [confirm])
+        
+        return stackViewModel
     }
     
 }

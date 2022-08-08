@@ -25,16 +25,16 @@ class SearhConditionsController: BaseTableViewController {
     var searchPetConditions = SearchPetConditions()
         
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.setRegisID(cellIDs: [
             "SearchConditionsCell"
         ])
-        super.viewDidLoad()
         self.setupRow()
     }
 
     func setupRow() {
         
-        self.rowModels.removeAll()
+        var rowModels: [CellRowModel] = []
         
         let petTypeRow = SearchConditionsCellRowModel(conditionsTitle: "動物類別:",
                                                       detailText: self.searchPetConditions.petType.title,
@@ -52,13 +52,13 @@ class SearhConditionsController: BaseTableViewController {
             })
         }
         
-        self.rowModels.append(petTypeRow)
+        rowModels.append(petTypeRow)
         
         let sexRow = SearchConditionsCellRowModel(conditionsTitle: "性別:",
                                                   detailText: self.searchPetConditions.sex.title,
                                                   detailData: self.searchPetConditions.sex)
         sexRow.cellDidSelect = { rowModels in
-            self.gotoSelectConditionsVC(selectType: .single,
+            self.gotoSelectConditionsVC(selectType: .multiple,
                                         dataSource: SelectData.sexConditions(),
                                         selectedData: [self.searchPetConditions.sex],
                                         confirmAction: { returnDatas in
@@ -70,9 +70,9 @@ class SearhConditionsController: BaseTableViewController {
             })
         }
         
-        self.rowModels.append(sexRow)
+        rowModels.append(sexRow)
         
-        self.adapter?.updateTableViewData(rowModels: self.rowModels)
+        self.adapter?.updateTableViewData(rowModels: rowModels)
         
         
     }
@@ -85,16 +85,18 @@ class SearhConditionsController: BaseTableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    override func setBottomButtons() -> [BottomBarButton] {
-        let searchButton: BottomBarButton = .search(action: {
-            
+
+    override func createBottomBarViewModel() -> BottomBarViewModel {
+        
+        let search: BottomBarButtonModel = .search(style: .white) {
             let vc = PetTableViewController()
             vc.searchPetConditions = self.searchPetConditions
             self.navigationController?.pushViewController(vc, animated: true)
-        })
+        }
         
-        return [searchButton]
+        let viewModel = StackBottomBarViewModel(backgroundColor: .white, buttonsModels: [search])
+        
+        return viewModel
     }
     
 }

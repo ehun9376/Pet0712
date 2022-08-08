@@ -10,6 +10,8 @@ import UIKit
 class BaseTableViewController: UIViewController {
     
     var defaultTableView = UITableView()
+    
+    var stackBottomView: StackBottomBarView?
         
     var rowModels: [CellRowModel] = []
     
@@ -17,22 +19,18 @@ class BaseTableViewController: UIViewController {
     
     var adapter: TableViewAdapter?
     
-    var cellIDs: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupDefaultTableView()
-        self.setBottomBarView(buttons:self.setBottomButtons())
+        self.setBottomBarView(bottomBarViewModel: self.createBottomBarViewModel())
         self.adapter = .init(self.defaultTableView)
-        self.regisCellID()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setDefaultApp()
     }
-    
-    
     
     func setDefaultApp(){
         if #available(iOS 13.0, *) {
@@ -57,8 +55,12 @@ class BaseTableViewController: UIViewController {
         self.defaultTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant:  -self.defaultBottomBarHeight).isActive = true
     }
     
-    func regisCellID() {
-        if let ids = self.cellIDs as? [String] {
+
+    
+    ///call this func to set CellIDs
+    func setRegisID<cellTypes>(cellIDs: cellTypes) {
+        
+        if let ids = cellIDs as? [String] {
             for id in ids {
                 self.defaultTableView.register(UINib(nibName: id,
                                                      bundle: nil),
@@ -68,34 +70,37 @@ class BaseTableViewController: UIViewController {
         
         if let cells = cellIDs as? [UITableViewCell.Type] {
             for cell in cells {
-                self.defaultTableView.register(cell, forCellReuseIdentifier: cell.description())
+                self.defaultTableView.register(cell, forCellReuseIdentifier: "\(cell.self)")
             }
         }
         
     }
     
-    ///call this func to set CellIDs
-    func setRegisID<cellType>(cellIDs: cellType) {
-        self.cellIDs = cellIDs
+    
+    func createBottomBarViewModel() -> BottomBarViewModel {
+        let bottomBarViewModel = StackBottomBarViewModel()
+        return bottomBarViewModel
     }
     
-    
-    ///if need bottoBar override this func
-    func setBottomButtons() -> [BottomBarButton] {
-        return []
-    }
-    
-    func setBottomBarView(buttons: [BottomBarButton]) {
-        guard !buttons.isEmpty else { return }
+    func setBottomBarView(bottomBarViewModel: BottomBarViewModel) {
         
-        let stackBottomView = StackBottomBarView(bottomBarButtons: buttons)
-        stackBottomView.backgroundColor = UIColor.white
-        stackBottomView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(stackBottomView)
-        stackBottomView.heightAnchor.constraint(equalToConstant: self.defaultBottomBarHeight).isActive = true
-        stackBottomView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        stackBottomView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        stackBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        for view in self.view.subviews {
+            if let view = view as? StackBottomBarView{
+                view.removeFromSuperview()
+            }
+        }
+        
+        guard !bottomBarViewModel.buttonsModels.isEmpty else { return }
+        
+        self.stackBottomView = .init()
+        
+        stackBottomView?.setupBottomBarView(viewModel: bottomBarViewModel)
+        
+        self.view.addSubview(stackBottomView ?? UIView())
+        stackBottomView?.heightAnchor.constraint(equalToConstant: self.defaultBottomBarHeight).isActive = true
+        stackBottomView?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        stackBottomView?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        stackBottomView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
 }

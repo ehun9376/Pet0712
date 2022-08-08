@@ -8,67 +8,110 @@
 import Foundation
 import UIKit
 
+protocol BaseButtonModel {
+    var title: String? { get set }
+    var buttonTouchUpInsideAction: (()->())? { get set }
+}
+
+protocol ButtonModelBinding {
+    func setupButtonView(model: BaseButtonModel )
+}
+
+class BottomBarButtonModel: BaseButtonModel{
+    
+    enum BottomBarStyle {
+        case red
+        case white
+        case none
+    }
+    
+    class BottomBarButtonisEnabledStyle {
+        var backgroundColor: UIColor?
+        var titleColor: UIColor?
+    }
+    
+    var title: String? = ""
+    
+    var buttonTouchUpInsideAction: (() -> ())?
+    
+    var style: BottomBarStyle = .none
+    
+    var canClick: Bool = true
+    
+    var button: ButtonModelBinding?
+    
+    init(
+        title: String? = "",
+        style: BottomBarStyle,
+        canClick: Bool = true,
+        buttonTouchUpInsideAction: (()->())?
+    ){
+        self.title = title
+        self.style = style
+        self.canClick = canClick
+        self.buttonTouchUpInsideAction = buttonTouchUpInsideAction
+    }
+    
+    static func search(style: BottomBarStyle = .none,action: (()->())? = nil) -> BottomBarButtonModel {
+        let buttonModel = BottomBarButtonModel(title: "搜尋", style: style, buttonTouchUpInsideAction: action)
+        return buttonModel
+    }
+    
+    static func confirm(style: BottomBarStyle = .none,action: (()->())? = nil) -> BottomBarButtonModel {
+        let buttonModel = BottomBarButtonModel(title: "確定", style: style, buttonTouchUpInsideAction: action)
+        return buttonModel
+    }
+    func updateView(){
+        if let button = button {
+            button.setupButtonView(model: self)
+        }
+    }
+    
+}
+
+
 class BottomBarButton: UIButton {
     
-    var buttonTouchUpInsideAction: (()->())?
+    var buttonModel: BottomBarButtonModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
-    }
-    
-    convenience init(
-        touchUpInsideAction: (()->())?
-    ) {
-        self.init(frame: .zero)
-        buttonTouchUpInsideAction = touchUpInsideAction
-    }
-    
-    func setup(){
-        self.addTarget(self, action: #selector(touchUpInsideAction), for: .touchUpInside)
     }
     
     @objc func touchUpInsideAction() {
-        guard let buttonAction = buttonTouchUpInsideAction else {
+        guard let buttonAction = buttonModel?.buttonTouchUpInsideAction else {
             return
         }
         buttonAction()
     }
-    
-    func resetStatus(canClick: Bool = true) {
-        DispatchQueue.main.async {
-            self.backgroundColor = canClick ? UIColor.red : UIColor.gray
-            self.isEnabled = canClick
+        
+}
+extension BottomBarButton: ButtonModelBinding {
+    func setupButtonView(model: BaseButtonModel) {
+        guard let model = model as? BottomBarButtonModel else { return }
+        self.buttonModel = model
+        self.setTitle(model.title, for: .normal)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addTarget(self, action: #selector(touchUpInsideAction), for: .touchUpInside)
+        
+        switch model.style {
+            
+        case .red:
+            break
+        case .white:
+            self.setTitleColor(UIColor.white, for: .normal)
+            self.backgroundColor = model.canClick ? UIColor.red : .gray
+            self.isEnabled = model.canClick
+            self.translatesAutoresizingMaskIntoConstraints = false
+            self.clipsToBounds = true
+            self.layer.cornerRadius = 9
+        case .none:
+            break
         }
-    }
-        
-    static func search(action: (()->())?) -> BottomBarButton {
-        let button = BottomBarButton(touchUpInsideAction: action)
-        commonSet(button: button, action: action)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.red
-        button.setTitle("搜尋", for: .normal)
-        return button
-    }
-    
-    static func confirm(action: (()->())?) -> BottomBarButton {
-        let button = BottomBarButton(touchUpInsideAction: action)
-        commonSet(button: button, action: action)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.red
-        button.setTitle("確定", for: .normal)
-        return button
-    }
-        
-    class func commonSet(button: BottomBarButton, action: (()->())?) {
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 18)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 9
     }
 }

@@ -8,56 +8,92 @@
 import Foundation
 import UIKit
 
+protocol BottomBarViewModel {
+    var buttonsModels: [BaseButtonModel] { get set }
+}
+
+protocol BottomBarViewBinding {
+    func setupBottomBarView(viewModel: BottomBarViewModel )
+}
+
+class StackBottomBarViewModel: BottomBarViewModel {
+    
+    var backgroundColor: UIColor = .white
+    
+    var buttonsModels: [BaseButtonModel] = []
+    
+    init(
+        backgroundColor: UIColor = .white,
+        buttonsModels: [BaseButtonModel] = []
+    ){
+        self.backgroundColor = backgroundColor
+        self.buttonsModels = buttonsModels
+    }
+}
+
 class StackBottomBarView: UIView {
     
-    convenience init(bottomBarButtons: [BottomBarButton] = []) {
-        self.init(frame: .zero)
-        self.setupView(bottomBarButtons: bottomBarButtons)
-    }
+    let stackView = UIStackView()
+    
+    var stackViewModel: StackBottomBarViewModel?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    func createStackView() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .center
-        stackView.spacing = 20
-        return stackView
+        self.setupView()
+        self.setupStackView()
     }
     
-    func setupView(bottomBarButtons: [BottomBarButton] = []) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupView()
+        self.setupStackView()
+    }
+    
+    func setupStackView() {
+        self.stackView.axis = .horizontal
+        self.stackView.distribution = .fillProportionally
+        self.stackView.alignment = .center
+        self.stackView.spacing = 20
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupView() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 3
         self.layer.shadowOpacity = 0.1
         
-        let stackView = createStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         self.addSubview(stackView)
         
         stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 33).isActive = true
         stackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -33.0).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         
-        let totalButtons = bottomBarButtons.count
+    }
+    
+}
+
+extension StackBottomBarView: BottomBarViewBinding {
+    func setupBottomBarView(viewModel: BottomBarViewModel) {
+        guard let viewModel = viewModel as? StackBottomBarViewModel else { return }
+        
+        self.stackViewModel = viewModel
+        
+        self.backgroundColor = viewModel.backgroundColor
+        
+        let totalButtons = viewModel.buttonsModels.count
         let spacing: CGFloat = 20
         let availableWidth = UIScreen.main.bounds.width - CGFloat(totalButtons - 1) * spacing - 66
         let minWidth = min(availableWidth / CGFloat(totalButtons), CGFloat(140))
         
-        for button in bottomBarButtons {
-            
+        for model in viewModel.buttonsModels {
+            let button = BottomBarButton()
+            button.setupButtonView(model: model)
             stackView.addArrangedSubview(button)
-//            button.heightAnchor.constraint(equalToConstant: 45).isActive = true
             button.widthAnchor.constraint(equalToConstant: minWidth).isActive = true
+            
         }
-        
-        
     }
-    
-    
 }
